@@ -1,0 +1,50 @@
+<script>
+	export let data;
+	import humanize from 'humanize-plus';
+</script>
+
+<!-- <article class="bg-[url('https://imgs.search.brave.com/4ZNbIFuWsE6uhP7mZzgY0SDS5hGII-lNFHstawFVVpY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAwLzY0LzgzLzU4/LzM2MF9GXzY0ODM1/ODE4X1J3Q3hxWE12/UTdPWEYzYkR6d2FN/YnVzalFqRG1ZWjNx/LmpwZw')]">
+	<h1 class="text-center text-xl font-bold">Find Your Next Job</h1>
+
+	<div class="overflow-x-auto w-full" data-theme="bumblebee">
+		{#each data.jobs as job}
+			<div class="flex flex-col mt-10 bg-accent rounded-xl">
+				<div>
+					<a class="font-bold text-2xl" href="/jobs/{job.id}">{job.title}</a>
+					<div class="text-sm mt-1">
+						{job.employer} <br />
+						{job.location} <br />
+						<span class="text-sm"
+							>USD {humanize.formatNumber(job.minAnnualCompensation)} - USD {humanize.formatNumber(
+								job.maxAnnualCompensation
+							)}</span
+						>
+					</div>
+					<div class="italic text-xs opacity-50 mt-2">
+						posted {new Date(job.created).toLocaleDateString(undefined, {
+							weekday: 'long',
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						})}
+					</div>
+				</div>
+
+				<div class="mt-4">
+					{job.description.slice(0, 240)}...
+				</div>
+			</div>
+		{/each}
+	</div>
+</article> -->
+
+<!-- <body data-theme="forest">
+    <article>
+    <header class="bg-green, text-gray">
+        <a href='void'>NEXT Jobs DB</a> 
+    </header>
+    <main class = "bg-[url('https://images.unsplash.com/photo-1530362502708-d02c8f093039?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
+    <h1>Find your next job!</h1>
+    </main>
+    </article>
+</body> -->
