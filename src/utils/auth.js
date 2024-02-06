@@ -1,12 +1,16 @@
 import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
+import { writable } from 'svelte/store';
 
 const emptyAuth = {
     "token": "",
     "userId": ""
 }
 
-export function logOut() {
+export const loggedIn = writable(false)
+
+export function logOut(evt) {
     localStorage.setItem("auth", JSON.stringify(emptyAuth))
+    loggedIn.set(false)
     return true
 }
 
@@ -84,7 +88,9 @@ export function getTokenFromLocalStorage() {
         "token": res.token,
         "userId": res.record.id
       }));
-  
+
+
+      loggedIn.set(true)
       return {
         success: true,
         res: res

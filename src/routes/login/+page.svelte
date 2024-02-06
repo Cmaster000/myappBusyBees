@@ -22,9 +22,11 @@
 	}
 </script>
 
-<article data-theme="bumblebee" class="h-[700px]">
+
+
+<article data-theme="bumblebee" class="">
 	<main
-		class="flex pt-[150px] h-[700px] justify-center bg-[url('https://imgs.search.brave.com/4ZNbIFuWsE6uhP7mZzgY0SDS5hGII-lNFHstawFVVpY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAwLzY0LzgzLzU4/LzM2MF9GXzY0ODM1/ODE4X1J3Q3hxWE12/UTdPWEYzYkR6d2FN/YnVzalFqRG1ZWjNx/LmpwZw')]"
+		class="flex py-[150px] justify-center bg-honeycomb"
 	>
 		<form on:submit={loginFunc} class="w-1/3">
 			<div class="bg-accent p-5 rounded-3xl">

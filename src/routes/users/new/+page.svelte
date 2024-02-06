@@ -2,13 +2,11 @@
     import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
     import { goto } from '$app/navigation';
     import { authenticateUser } from './../../../utils/auth.js';
-    import { writable } from 'svelte/store';
 
-    const isLoggedIn = writable(false)
     let formErrors = {};
   
     function postSignUp() {
-      goto('/routes');
+      goto('/');
     }
   
     async function createUser(evt) {
@@ -53,7 +51,7 @@
   <div class="text-center">
       
   </div>
-  <div data-theme="bumblebee" class="h-[700px] flex pt-[150px] justify-center bg-[url('https://imgs.search.brave.com/4ZNbIFuWsE6uhP7mZzgY0SDS5hGII-lNFHstawFVVpY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAwLzY0LzgzLzU4/LzM2MF9GXzY0ODM1/ODE4X1J3Q3hxWE12/UTdPWEYzYkR6d2FN/YnVzalFqRG1ZWjNx/LmpwZw')]">
+  <div data-theme="bumblebee" class="flex py-[150px] justify-center bg-honeycomb">
       <form on:submit={createUser} class="w-1/3">
         <div class="bg-accent p-5 rounded-3xl">
 
