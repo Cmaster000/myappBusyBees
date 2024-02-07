@@ -33,6 +33,9 @@
 				<div class="flex justify-center w-full">
 					<p class="text-3xl font-mono my-3">Login</p>
 				</div>
+				<!-- {#if errorMessage}
+					<Alert border><span class="font-medium">Uh oh! </span>{errorMessage}</Alert>
+				{/if} -->
 				<label class="label" for="username">
 					<span class="label-text font-mono">Username</span>
 				</label>
@@ -46,9 +49,6 @@
 					<span class="label-text font-mono">Password</span>
 				</label>
 				<input name="password" type="password" class="input input-bordered w-full" />
-                {#if errorMessage}
-					<div class="text-black text-center mt-2">{errorMessage}</div>
-				{/if}
 				<br />
 				<button class="btn btn-primary w-full mt-4">Submit</button>
 				<a class="link-hover italic text-xs" href="/users/new"

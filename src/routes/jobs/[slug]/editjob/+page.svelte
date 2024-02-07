@@ -1,13 +1,15 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
-    import { getTokenFromLocalStorage } from '../../../utils/auth';
-    import { getUserId } from '../../../utils/auth';
+    import { getTokenFromLocalStorage } from '../../../../utils/auth';
+    import { getUserId } from '../../../../utils/auth';
     export let data
 
     let formErrors = {} 
     let getToken = getTokenFromLocalStorage()
     let id = getUserId()
+
+	console.log(id)
 
 	async function editJob(evt) {
 		evt.preventDefault();
@@ -23,6 +25,8 @@
 			minAnnualCompensation: evt.target['minAnnualCompensation'].value,
 			maxAnnualCompensation: evt.target['maxAnnualCompensation'].value
 		};
+
+		console.log(jobData)
 
 		const resp = await fetch(PUBLIC_BACKEND_BASE_URL + `/api/collections/jobs/records/${data.job.id}`, {
 			method: 'PATCH',
