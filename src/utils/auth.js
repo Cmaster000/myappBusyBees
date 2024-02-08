@@ -7,6 +7,11 @@ const emptyAuth = {
 }
 
 export const loggedIn = writable(false)
+export const bgImg = writable('honeycomb')
+
+export function destroyJob() {
+  
+}
 
 export function logOut(evt) {
     localStorage.setItem("auth", JSON.stringify(emptyAuth))

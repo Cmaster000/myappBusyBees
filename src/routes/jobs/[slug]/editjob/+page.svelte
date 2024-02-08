@@ -8,11 +8,13 @@
     let formErrors = {} 
     let getToken = getTokenFromLocalStorage()
     let id = getUserId()
+	let spin = false
 
 	console.log(id)
 
 	async function editJob(evt) {
 		evt.preventDefault();
+		spin = true
 
 		const jobData = {
             user: id,
@@ -38,14 +40,27 @@
 			body: JSON.stringify(jobData)
 		});
 
+		console.log(resp.status)
+		console.log(resp.headers.get("Content-Type"))
+
         const res = await resp.json();
         console.log(res)
 
-		if (resp.status == 200) {
-			goto('/');
-		} else {
-			formErrors = res.data;
+		if (resp.status === 204) {
+        goto('/');
+		spin = false
 		}
+		// else if (resp.status == 200) {
+		// 	goto('/')
+		// } else {
+		// 	formErrors = res.data;
+		// }
+
+		// if (resp.status == 200) {
+		// 	goto('/');
+		// } else {
+		// 	formErrors = res.data;
+		// }
 	}
 </script>
 
@@ -148,7 +163,15 @@
 			</div>
 
 			<div class="form-control w-full mt-4">
-				<button class="btn btn-primary">Submit</button>
+				{#if spin === true}
+				<button class="btn btn-primary w-full mt-4">
+                    <span class="loading loading-infinity loading-lg"></span>Submit Changes
+                </button>
+				{:else} 
+				<button class="btn btn-primary w-full mt-4">
+                    Submit Changes
+                </button>
+				{/if}
 			</div>
 		</div>
 	</form>

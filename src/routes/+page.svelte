@@ -4,6 +4,8 @@
 	import { getUserId } from '../utils/auth';
 
 	const id = getUserId()
+
+
 </script>
 
 <article
@@ -11,7 +13,7 @@
 >
 	
 
-	<div class="overflow-x-auto w-full bg-honeycomb p-5" data-theme="bumblebee">
+	<div class="overflow-x-auto w-full p-5">
 		<h1 class="text-center text-4xl font-bold">Find Your Next Job</h1>
 		{#each data.jobs as job}
 			<div class="flex flex-col mt-10 bg-accent rounded-xl p-2">
@@ -38,6 +40,9 @@
 						{#if job.user === id}
 						<div>
 							<a href="/jobs/{job.id}/editjob" class="btn btn-primary absolute top-0 right-0">Edit</a>
+						</div>
+						<div>
+							<a href="/jobs/{job.id}/editjob" class="btn btn-primary absolute top-0 right-0">Delete</a>
 						</div>
 						{/if}
 					</div>
