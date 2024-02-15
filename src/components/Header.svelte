@@ -31,15 +31,15 @@
         <a class="btn btn-primary mx-5" href="/users/new">Sign Up</a>
         {/if}
         
-        {#if nowTheme === 'bumblebee'}
+        {#if nowTheme === 'coffee'}
         <select on:change={changeTheme} class="btn mx-5 btn-primary">
-            <option value="bumblebee">Light</option>
             <option value="coffee">Dark</option>
+            <option value="bumblebee">Light</option>
         </select>
         {:else}
         <select on:change={changeTheme} class="btn mx-5 btn-primary">
-            <option value="coffee">Dark</option>
             <option value="bumblebee">Light</option>
+            <option value="coffee">Dark</option>
         </select>
         {/if}
     </div>
