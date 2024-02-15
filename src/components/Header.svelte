@@ -25,12 +25,6 @@
         {#if $loggedIn}
         <a class="btn btn-primary mx-5" href="/newjob">Add New Job</a>
         <button on:click={logOut} class="btn btn-primary mx-5">Log out</button>
-        {:else}
-        <a class="btn btn-primary mx-5" href="/login">Add New Job</a>
-        <a class="btn btn-primary mx-5" href="/login">Login</a>
-        <a class="btn btn-primary mx-5" href="/users/new">Sign Up</a>
-        {/if}
-        
         {#if nowTheme === 'coffee'}
         <select on:change={changeTheme} class="btn mx-5 btn-primary">
             <option value="coffee">Dark</option>
@@ -42,5 +36,12 @@
             <option value="coffee">Dark</option>
         </select>
         {/if}
+        {:else}
+        <a class="btn btn-primary mx-5" href="/login">Add New Job</a>
+        <a class="btn btn-primary mx-5" href="/login">Login</a>
+        <a class="btn btn-primary mx-5" href="/users/new">Sign Up</a>
+        {/if}
+        
+        
     </div>
 </header>
