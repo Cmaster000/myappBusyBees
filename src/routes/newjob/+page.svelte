@@ -2,6 +2,8 @@
     import { goto } from '$app/navigation';
     import { getUserId } from '../../utils/auth';
     import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
+	import Alerts from '../../components/Alerts.svelte';
+	import { alerts } from '../../utils/alerts.js';
 
     let formErrors = ''
 	let spin = false
@@ -39,15 +41,20 @@
   
       if (resp.status == 200) {
         goto('/')
+		warningAlert.set(false)
       } else {
 		spin = false
         const res = await resp.json();
         formErrors = res.data;
+		alerts.setAlert('Darn, something went wrong, please try again', 'warning')
+			setTimeout(() => {
+				alerts.clearAlert()
+			}, 3000)
       }
     }
 </script>
 
-<article class="flex justify-center py-[150px] bg-honeycomb">
+<article class="flex justify-center py-[150px] bgImg">
 	<form on:submit={newJob}>
 		<div class="bg-accent p-5 rounded-3xl">
 			<div class="flex justify-center w-full">

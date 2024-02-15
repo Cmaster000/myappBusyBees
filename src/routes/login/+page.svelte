@@ -1,6 +1,8 @@
 <script>
 	import { authenticateUser } from '../../utils/auth';
 	import { goto } from '$app/navigation';
+	import Alerts from '../../components/Alerts.svelte';
+	import { alerts } from '../../utils/alerts';
 
 	let errorMessage = ' ';
 	let spin = false
@@ -19,9 +21,14 @@
 		if (res.success) {
 			goto('/');
 			errorMessage = ' ';
+			warningAlert.set(false)
 		} else {
 			spin = false
 			errorMessage = 'Login Failed, please try again';
+			alerts.setAlert('Please check your username/password', 'warning')
+			setTimeout(() => {
+				alerts.clearAlert()
+			}, 3000)
 		}
 	}
 </script>
@@ -30,19 +37,20 @@
 
 <article class="">
 	<main
-		class="flex py-[150px] justify-center bg-honeycomb"
+		class="flex py-[150px] justify-center bgImg"
 	>
+	<div class="absolute top-20"><Alerts /></div>
 		<form on:submit={loginFunc} class="w-1/3">
 			<div class="bg-accent p-5 rounded-3xl">
 				<div class="flex justify-center w-full">
 					<p class="text-3xl font-mono my-3">Login</p>
 				</div>
-				{#if errorMessage !== ' '}
+				<!-- {#if errorMessage !== ' '}
 				<div role="alert" class="alert alert-warning">
 					<svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-					<span>Uh oh! </span>{errorMessage}
+					<span>Uh oh! {errorMessage}</span>
 				</div>
-				{/if}
+				{/if} -->
 				<label class="label" for="username">
 					<span class="label-text font-mono">Username</span>
 				</label>

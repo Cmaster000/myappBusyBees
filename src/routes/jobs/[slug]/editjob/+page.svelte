@@ -3,6 +3,8 @@
 	import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
     import { getTokenFromLocalStorage } from '../../../../utils/auth';
     import { getUserId } from '../../../../utils/auth';
+	import Alerts from '../../../../components/Alerts.svelte';
+	import { alerts } from '../../../../utils/alerts.js';
     export let data
 
     let formErrors = {} 
@@ -11,6 +13,8 @@
 	let spin = false
 
 	console.log(id)
+
+	
 
 	async function editJob(evt) {
 		evt.preventDefault();
@@ -40,16 +44,47 @@
 			body: JSON.stringify(jobData)
 		});
 
+		// function goHome() {
+		// goto(`/jobs/${data.jobs.id}`)
+		// }
+
+		// console.log(resp.status)
+		// console.log(resp.headers.get("Content-Type"))
+
+        // const res = await resp.json();
+        // console.log(res)
+
+		// if (resp.status === 204) {
+        // goto('/');
+		// spin = false
+		// warningAlert.set(false)
+		// } else {
+		// 	spin = false
+		// alerts.setAlert('Darn, something went wrong, please try again', 'warning')
+	  	// setTimeout(() => {
+		// 	  alerts.clearAlert()
+		//   }, 3000)
+		// }
+
 		console.log(resp.status)
-		console.log(resp.headers.get("Content-Type"))
+  console.log(resp.headers.get("Content-Type"))
 
-        const res = await resp.json();
-        console.log(res)
+  console.log(`${data.job.id}`)
 
-		if (resp.status === 204) {
-        goto('/');
-		spin = false
-		}
+  if (resp.status === 204) {
+	console.log(`${data.job.id}`)
+	goto(`/jobs/${data.job.id}`)
+//   warningAlert.set(false)
+  } else {
+spin = false
+alerts.setAlert('Darn, something went wrong, please try again', 'warning')
+	  setTimeout(() => {
+		  alerts.clearAlert()
+	  }, 3000)
+}
+
+}
+		
 		// else if (resp.status == 200) {
 		// 	goto('/')
 		// } else {
@@ -61,10 +96,10 @@
 		// } else {
 		// 	formErrors = res.data;
 		// }
-	}
+	
 </script>
 
-<article class="flex justify-center py-[150px] bg-honeycomb">
+<article class="flex justify-center py-[150px] bgImg">
 	<form on:submit={editJob}>
 		<div class="bg-accent p-5 rounded-3xl">
 			<div class="flex justify-center w-full">

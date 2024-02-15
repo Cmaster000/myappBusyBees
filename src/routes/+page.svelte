@@ -3,55 +3,44 @@
 	import humanize from 'humanize-plus';
 	import { getUserId } from '../utils/auth';
 
-	const id = getUserId()
-
-
+	const id = getUserId();
+	let show = false;
 </script>
 
-<article
-	class="min-h-screen"
->
-	
-
+<article class="min-h-screen bgImg">
 	<div class="overflow-x-auto w-full p-5">
 		<h1 class="text-center text-4xl font-bold">Find Your Next Job</h1>
 		{#each data.jobs as job}
-			<div class="flex flex-col mt-10 bg-accent rounded-xl p-2">
-				<a href="/jobs/{job.id}">
-					<div class="relative">
-						<h1 class="font-bold text-2xl">{job.title}</h1>
-						<div class="text-sm mt-1">
-							{job.employer} <br />
-							{job.location} <br />
-							<span class="text-sm"
-								>USD {humanize.formatNumber(job.minAnnualCompensation)} - USD {humanize.formatNumber(
-									job.maxAnnualCompensation
-								)}</span
-							>
-						</div>
-						<div class="italic text-xs opacity-50 mt-2">
-							Posted {new Date(job.created).toLocaleDateString(undefined, {
-								weekday: 'long',
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric'
-							})}
-						</div>
-						{#if job.user === id}
-						<div>
-							<a href="/jobs/{job.id}/editjob" class="btn btn-primary absolute top-0 right-0">Edit</a>
-						</div>
-						<div>
-							<a href="/jobs/{job.id}/editjob" class="btn btn-primary absolute top-0 right-0">Delete</a>
-						</div>
-						{/if}
-					</div>
-				</a>
+				{#if job.id != ''}
+					<div class="flex flex-col mt-10 bg-accent rounded-xl p-2">
+						<a href="/jobs/{job.id}">
+							<div class="relative">
+								<h1 class="font-bold text-2xl">{job.title}</h1>
+								<div class="text-sm mt-1">
+									{job.employer} <br />
+									{job.location} <br />
+									<span class="text-sm"
+										>USD {humanize.formatNumber(job.minAnnualCompensation)} - USD {humanize.formatNumber(
+											job.maxAnnualCompensation
+										)}</span
+									>
+								</div>
+								<div class="italic text-xs opacity-50 mt-2">
+									Posted {new Date(job.created).toLocaleDateString(undefined, {
+										weekday: 'long',
+										year: 'numeric',
+										month: 'long',
+										day: 'numeric'
+									})}
+								</div>
+							</div>
+						</a>
 
-				<div class="mt-4">
-					{job.description.slice(0, 240)}...
-				</div>
-			</div>
+						<div class="mt-4">
+							{job.description.slice(0, 240)}...
+						</div>
+					</div>
+				{/if}
 		{/each}
 	</div>
 </article>

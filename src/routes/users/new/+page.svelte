@@ -2,6 +2,8 @@
 	import { PUBLIC_BACKEND_BASE_URL } from '$env/static/public';
 	import { goto } from '$app/navigation';
 	import { authenticateUser } from './../../../utils/auth.js';
+	import Alerts from '../../../components/Alerts.svelte';
+	import { alerts } from '../../../utils/alerts';
 
 	let formErrors = {};
 	let spin = false
@@ -50,12 +52,17 @@
 			const res = await resp.json();
 			formErrors = res.data;
 			spin = false
+			alerts.setAlert('Darn, something went wrong with the sign up, please try again', 'warning')
+			setTimeout(() => {
+				alerts.clearAlert()
+			}, 3000)
 		}
 	}
 </script>
 
 <div class="text-center"></div>
-<div class="flex py-[150px] justify-center bg-honeycomb">
+<div class="flex py-[150px] justify-center bgImg">
+	<div class="absolute top-20"><Alerts /></div>
 	<form on:submit={createUser} class="w-1/3">
 		<div class="bg-accent p-5 rounded-3xl">
 			<div class="flex justify-center w-full">
@@ -78,7 +85,7 @@
 					<span>Uh oh! </span>{formErrors['username'].message}
 				</div>
 			{/if}
-      {#if 'email' in formErrors}
+      		{#if 'email' in formErrors}
 				<div role="alert" class="alert alert-warning">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +102,7 @@
 					<span>Uh oh! </span>{formErrors['email'].message}
 				</div>
 			{/if}
-      {#if 'password' in formErrors}
+      		{#if 'password' in formErrors}
 				<div role="alert" class="alert alert-warning">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
